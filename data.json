@@ -1,0 +1,3737 @@
+{
+  "generatedAt": "2026-07-07T19:33:55.545030+00:00",
+  "source": "Metabase table 'Calls' (Analytics DB, table id 12288) - Five9 call log export",
+  "metricDefinitions": {
+    "answered": "Talk Time > 0 (agent connected with caller)",
+    "answered30s": "Answered AND Total Queue Time <= 30s (speed of answer)",
+    "answered2min": "Answered AND Total Queue Time <= 120s",
+    "abandoned": "Disposition in ['Abandon','Abandon - United Pacific']",
+    "transferredCbsi": "Disposition == 'Transferred To CBSI'",
+    "slaHit5min": "Any of: answered w/ Total Queue Time<=300s, abandoned w/ Time To Abandon (or Total Queue Time)<=300s, or CBSI transfer w/ Total Queue Time<=300s",
+    "slaPct": "slaHit5min / total (all calls in period), per the % of ALL calls resolved within 5 min definition"
+  },
+  "dataQualityNote": "A large share of Total Queue Time / Time To Abandon values in the source table are stored in a corrupted format (comma-decimal scientific notation, e.g. '7,15E+09') rather than valid day-fraction floats. Rows with unparseable timing fields are excluded from the 30s/2min/5min SLA buckets (but still counted in totals/answered/abandoned/CBSI counts, which rely on Talk Time and Disposition, not the corrupted fields). Roughly 60-70% of answered calls in this dataset lack a usable queue-time value, so the speed-of-answer buckets are directionally useful but understate true volume.",
+  "coverageNote": "The source table currently has no records after 2025-11-03 (last sync). This dataset spans all available history (2024-10-17 to 2025-11-03) as a placeholder/backfill. update_data.py + the daily GitHub Action will begin appending real 2026 rows as soon as the table is re-synced with current data.",
+  "days": [
+    {
+      "date": "2024-10-17",
+      "total": 628,
+      "answered": 582,
+      "answered30s": 49,
+      "answered2min": 59,
+      "abandoned": 15,
+      "transferredCbsi": 1,
+      "slaHit5min": 102
+    },
+    {
+      "date": "2024-10-29",
+      "total": 731,
+      "answered": 615,
+      "answered30s": 69,
+      "answered2min": 95,
+      "abandoned": 25,
+      "transferredCbsi": 12,
+      "slaHit5min": 160
+    },
+    {
+      "date": "2024-10-30",
+      "total": 597,
+      "answered": 505,
+      "answered30s": 66,
+      "answered2min": 104,
+      "abandoned": 17,
+      "transferredCbsi": 28,
+      "slaHit5min": 165
+    },
+    {
+      "date": "2024-10-31",
+      "total": 665,
+      "answered": 599,
+      "answered30s": 76,
+      "answered2min": 130,
+      "abandoned": 18,
+      "transferredCbsi": 16,
+      "slaHit5min": 227
+    },
+    {
+      "date": "2024-11-01",
+      "total": 707,
+      "answered": 612,
+      "answered30s": 73,
+      "answered2min": 119,
+      "abandoned": 32,
+      "transferredCbsi": 14,
+      "slaHit5min": 239
+    },
+    {
+      "date": "2024-11-02",
+      "total": 225,
+      "answered": 194,
+      "answered30s": 31,
+      "answered2min": 37,
+      "abandoned": 3,
+      "transferredCbsi": 1,
+      "slaHit5min": 46
+    },
+    {
+      "date": "2024-11-03",
+      "total": 209,
+      "answered": 198,
+      "answered30s": 5,
+      "answered2min": 7,
+      "abandoned": 0,
+      "transferredCbsi": 0,
+      "slaHit5min": 8
+    },
+    {
+      "date": "2024-11-04",
+      "total": 760,
+      "answered": 629,
+      "answered30s": 136,
+      "answered2min": 195,
+      "abandoned": 27,
+      "transferredCbsi": 16,
+      "slaHit5min": 312
+    },
+    {
+      "date": "2024-11-05",
+      "total": 722,
+      "answered": 559,
+      "answered30s": 74,
+      "answered2min": 104,
+      "abandoned": 44,
+      "transferredCbsi": 49,
+      "slaHit5min": 237
+    },
+    {
+      "date": "2024-11-06",
+      "total": 810,
+      "answered": 674,
+      "answered30s": 73,
+      "answered2min": 126,
+      "abandoned": 32,
+      "transferredCbsi": 51,
+      "slaHit5min": 282
+    },
+    {
+      "date": "2024-11-07",
+      "total": 657,
+      "answered": 547,
+      "answered30s": 20,
+      "answered2min": 61,
+      "abandoned": 21,
+      "transferredCbsi": 36,
+      "slaHit5min": 136
+    },
+    {
+      "date": "2024-11-08",
+      "total": 618,
+      "answered": 543,
+      "answered30s": 80,
+      "answered2min": 104,
+      "abandoned": 13,
+      "transferredCbsi": 25,
+      "slaHit5min": 167
+    },
+    {
+      "date": "2024-11-09",
+      "total": 153,
+      "answered": 133,
+      "answered30s": 8,
+      "answered2min": 13,
+      "abandoned": 2,
+      "transferredCbsi": 0,
+      "slaHit5min": 15
+    },
+    {
+      "date": "2024-11-10",
+      "total": 196,
+      "answered": 187,
+      "answered30s": 14,
+      "answered2min": 19,
+      "abandoned": 0,
+      "transferredCbsi": 2,
+      "slaHit5min": 26
+    },
+    {
+      "date": "2024-11-11",
+      "total": 626,
+      "answered": 556,
+      "answered30s": 47,
+      "answered2min": 59,
+      "abandoned": 7,
+      "transferredCbsi": 5,
+      "slaHit5min": 85
+    },
+    {
+      "date": "2024-11-12",
+      "total": 754,
+      "answered": 607,
+      "answered30s": 65,
+      "answered2min": 104,
+      "abandoned": 25,
+      "transferredCbsi": 39,
+      "slaHit5min": 203
+    },
+    {
+      "date": "2024-11-13",
+      "total": 703,
+      "answered": 580,
+      "answered30s": 70,
+      "answered2min": 120,
+      "abandoned": 38,
+      "transferredCbsi": 21,
+      "slaHit5min": 205
+    },
+    {
+      "date": "2024-11-14",
+      "total": 595,
+      "answered": 514,
+      "answered30s": 49,
+      "answered2min": 78,
+      "abandoned": 12,
+      "transferredCbsi": 16,
+      "slaHit5min": 131
+    },
+    {
+      "date": "2024-11-15",
+      "total": 556,
+      "answered": 455,
+      "answered30s": 30,
+      "answered2min": 51,
+      "abandoned": 17,
+      "transferredCbsi": 22,
+      "slaHit5min": 124
+    },
+    {
+      "date": "2024-11-16",
+      "total": 208,
+      "answered": 187,
+      "answered30s": 14,
+      "answered2min": 28,
+      "abandoned": 4,
+      "transferredCbsi": 0,
+      "slaHit5min": 29
+    },
+    {
+      "date": "2024-11-17",
+      "total": 141,
+      "answered": 124,
+      "answered30s": 12,
+      "answered2min": 13,
+      "abandoned": 0,
+      "transferredCbsi": 0,
+      "slaHit5min": 13
+    },
+    {
+      "date": "2024-11-18",
+      "total": 825,
+      "answered": 706,
+      "answered30s": 87,
+      "answered2min": 113,
+      "abandoned": 18,
+      "transferredCbsi": 25,
+      "slaHit5min": 236
+    },
+    {
+      "date": "2024-11-19",
+      "total": 713,
+      "answered": 606,
+      "answered30s": 53,
+      "answered2min": 76,
+      "abandoned": 23,
+      "transferredCbsi": 28,
+      "slaHit5min": 153
+    },
+    {
+      "date": "2024-11-20",
+      "total": 787,
+      "answered": 657,
+      "answered30s": 65,
+      "answered2min": 93,
+      "abandoned": 40,
+      "transferredCbsi": 29,
+      "slaHit5min": 205
+    },
+    {
+      "date": "2024-11-21",
+      "total": 778,
+      "answered": 625,
+      "answered30s": 44,
+      "answered2min": 73,
+      "abandoned": 64,
+      "transferredCbsi": 45,
+      "slaHit5min": 203
+    },
+    {
+      "date": "2024-11-22",
+      "total": 811,
+      "answered": 710,
+      "answered30s": 52,
+      "answered2min": 88,
+      "abandoned": 10,
+      "transferredCbsi": 17,
+      "slaHit5min": 151
+    },
+    {
+      "date": "2024-11-23",
+      "total": 210,
+      "answered": 200,
+      "answered30s": 3,
+      "answered2min": 7,
+      "abandoned": 4,
+      "transferredCbsi": 0,
+      "slaHit5min": 17
+    },
+    {
+      "date": "2024-11-24",
+      "total": 193,
+      "answered": 190,
+      "answered30s": 12,
+      "answered2min": 16,
+      "abandoned": 0,
+      "transferredCbsi": 0,
+      "slaHit5min": 19
+    },
+    {
+      "date": "2024-11-25",
+      "total": 833,
+      "answered": 700,
+      "answered30s": 75,
+      "answered2min": 127,
+      "abandoned": 20,
+      "transferredCbsi": 30,
+      "slaHit5min": 254
+    },
+    {
+      "date": "2024-11-26",
+      "total": 708,
+      "answered": 583,
+      "answered30s": 76,
+      "answered2min": 119,
+      "abandoned": 17,
+      "transferredCbsi": 42,
+      "slaHit5min": 216
+    },
+    {
+      "date": "2024-11-27",
+      "total": 565,
+      "answered": 520,
+      "answered30s": 35,
+      "answered2min": 64,
+      "abandoned": 11,
+      "transferredCbsi": 10,
+      "slaHit5min": 118
+    },
+    {
+      "date": "2024-11-28",
+      "total": 189,
+      "answered": 158,
+      "answered30s": 6,
+      "answered2min": 6,
+      "abandoned": 0,
+      "transferredCbsi": 0,
+      "slaHit5min": 6
+    },
+    {
+      "date": "2024-11-29",
+      "total": 666,
+      "answered": 602,
+      "answered30s": 54,
+      "answered2min": 96,
+      "abandoned": 11,
+      "transferredCbsi": 2,
+      "slaHit5min": 137
+    },
+    {
+      "date": "2024-11-30",
+      "total": 315,
+      "answered": 274,
+      "answered30s": 30,
+      "answered2min": 56,
+      "abandoned": 6,
+      "transferredCbsi": 8,
+      "slaHit5min": 86
+    },
+    {
+      "date": "2024-12-01",
+      "total": 223,
+      "answered": 194,
+      "answered30s": 12,
+      "answered2min": 19,
+      "abandoned": 0,
+      "transferredCbsi": 4,
+      "slaHit5min": 27
+    },
+    {
+      "date": "2024-12-02",
+      "total": 885,
+      "answered": 694,
+      "answered30s": 103,
+      "answered2min": 161,
+      "abandoned": 36,
+      "transferredCbsi": 51,
+      "slaHit5min": 311
+    },
+    {
+      "date": "2024-12-03",
+      "total": 851,
+      "answered": 701,
+      "answered30s": 85,
+      "answered2min": 113,
+      "abandoned": 34,
+      "transferredCbsi": 47,
+      "slaHit5min": 251
+    },
+    {
+      "date": "2024-12-04",
+      "total": 1004,
+      "answered": 770,
+      "answered30s": 124,
+      "answered2min": 164,
+      "abandoned": 50,
+      "transferredCbsi": 73,
+      "slaHit5min": 365
+    },
+    {
+      "date": "2024-12-05",
+      "total": 1058,
+      "answered": 663,
+      "answered30s": 58,
+      "answered2min": 109,
+      "abandoned": 75,
+      "transferredCbsi": 253,
+      "slaHit5min": 465
+    },
+    {
+      "date": "2024-12-06",
+      "total": 1048,
+      "answered": 771,
+      "answered30s": 145,
+      "answered2min": 192,
+      "abandoned": 50,
+      "transferredCbsi": 132,
+      "slaHit5min": 463
+    },
+    {
+      "date": "2024-12-07",
+      "total": 337,
+      "answered": 253,
+      "answered30s": 38,
+      "answered2min": 59,
+      "abandoned": 14,
+      "transferredCbsi": 36,
+      "slaHit5min": 113
+    },
+    {
+      "date": "2024-12-08",
+      "total": 165,
+      "answered": 143,
+      "answered30s": 11,
+      "answered2min": 23,
+      "abandoned": 5,
+      "transferredCbsi": 10,
+      "slaHit5min": 40
+    },
+    {
+      "date": "2024-12-09",
+      "total": 738,
+      "answered": 620,
+      "answered30s": 117,
+      "answered2min": 165,
+      "abandoned": 13,
+      "transferredCbsi": 14,
+      "slaHit5min": 256
+    },
+    {
+      "date": "2024-12-10",
+      "total": 812,
+      "answered": 538,
+      "answered30s": 84,
+      "answered2min": 113,
+      "abandoned": 64,
+      "transferredCbsi": 160,
+      "slaHit5min": 390
+    },
+    {
+      "date": "2024-12-11",
+      "total": 556,
+      "answered": 468,
+      "answered30s": 42,
+      "answered2min": 62,
+      "abandoned": 15,
+      "transferredCbsi": 40,
+      "slaHit5min": 127
+    },
+    {
+      "date": "2024-12-12",
+      "total": 727,
+      "answered": 597,
+      "answered30s": 82,
+      "answered2min": 114,
+      "abandoned": 23,
+      "transferredCbsi": 28,
+      "slaHit5min": 186
+    },
+    {
+      "date": "2024-12-13",
+      "total": 663,
+      "answered": 548,
+      "answered30s": 103,
+      "answered2min": 144,
+      "abandoned": 18,
+      "transferredCbsi": 27,
+      "slaHit5min": 233
+    },
+    {
+      "date": "2024-12-14",
+      "total": 248,
+      "answered": 199,
+      "answered30s": 16,
+      "answered2min": 22,
+      "abandoned": 8,
+      "transferredCbsi": 26,
+      "slaHit5min": 67
+    },
+    {
+      "date": "2024-12-15",
+      "total": 229,
+      "answered": 203,
+      "answered30s": 15,
+      "answered2min": 20,
+      "abandoned": 3,
+      "transferredCbsi": 14,
+      "slaHit5min": 39
+    },
+    {
+      "date": "2024-12-16",
+      "total": 738,
+      "answered": 634,
+      "answered30s": 108,
+      "answered2min": 182,
+      "abandoned": 19,
+      "transferredCbsi": 6,
+      "slaHit5min": 261
+    },
+    {
+      "date": "2024-12-17",
+      "total": 568,
+      "answered": 512,
+      "answered30s": 47,
+      "answered2min": 78,
+      "abandoned": 8,
+      "transferredCbsi": 16,
+      "slaHit5min": 118
+    },
+    {
+      "date": "2024-12-18",
+      "total": 778,
+      "answered": 676,
+      "answered30s": 56,
+      "answered2min": 91,
+      "abandoned": 24,
+      "transferredCbsi": 40,
+      "slaHit5min": 200
+    },
+    {
+      "date": "2024-12-19",
+      "total": 625,
+      "answered": 567,
+      "answered30s": 41,
+      "answered2min": 72,
+      "abandoned": 9,
+      "transferredCbsi": 4,
+      "slaHit5min": 97
+    },
+    {
+      "date": "2024-12-20",
+      "total": 470,
+      "answered": 438,
+      "answered30s": 40,
+      "answered2min": 49,
+      "abandoned": 0,
+      "transferredCbsi": 0,
+      "slaHit5min": 58
+    },
+    {
+      "date": "2024-12-21",
+      "total": 182,
+      "answered": 172,
+      "answered30s": 21,
+      "answered2min": 21,
+      "abandoned": 0,
+      "transferredCbsi": 2,
+      "slaHit5min": 26
+    },
+    {
+      "date": "2024-12-22",
+      "total": 218,
+      "answered": 203,
+      "answered30s": 11,
+      "answered2min": 21,
+      "abandoned": 0,
+      "transferredCbsi": 10,
+      "slaHit5min": 32
+    },
+    {
+      "date": "2024-12-23",
+      "total": 930,
+      "answered": 802,
+      "answered30s": 117,
+      "answered2min": 194,
+      "abandoned": 24,
+      "transferredCbsi": 14,
+      "slaHit5min": 291
+    },
+    {
+      "date": "2024-12-24",
+      "total": 538,
+      "answered": 468,
+      "answered30s": 30,
+      "answered2min": 44,
+      "abandoned": 8,
+      "transferredCbsi": 14,
+      "slaHit5min": 82
+    },
+    {
+      "date": "2024-12-25",
+      "total": 269,
+      "answered": 198,
+      "answered30s": 11,
+      "answered2min": 11,
+      "abandoned": 0,
+      "transferredCbsi": 0,
+      "slaHit5min": 11
+    },
+    {
+      "date": "2024-12-26",
+      "total": 538,
+      "answered": 478,
+      "answered30s": 39,
+      "answered2min": 64,
+      "abandoned": 6,
+      "transferredCbsi": 6,
+      "slaHit5min": 114
+    },
+    {
+      "date": "2024-12-27",
+      "total": 614,
+      "answered": 494,
+      "answered30s": 62,
+      "answered2min": 86,
+      "abandoned": 23,
+      "transferredCbsi": 44,
+      "slaHit5min": 174
+    },
+    {
+      "date": "2024-12-28",
+      "total": 248,
+      "answered": 227,
+      "answered30s": 11,
+      "answered2min": 13,
+      "abandoned": 3,
+      "transferredCbsi": 2,
+      "slaHit5min": 19
+    },
+    {
+      "date": "2024-12-29",
+      "total": 275,
+      "answered": 249,
+      "answered30s": 5,
+      "answered2min": 9,
+      "abandoned": 0,
+      "transferredCbsi": 0,
+      "slaHit5min": 10
+    },
+    {
+      "date": "2024-12-30",
+      "total": 639,
+      "answered": 543,
+      "answered30s": 74,
+      "answered2min": 91,
+      "abandoned": 18,
+      "transferredCbsi": 0,
+      "slaHit5min": 170
+    },
+    {
+      "date": "2024-12-31",
+      "total": 427,
+      "answered": 392,
+      "answered30s": 50,
+      "answered2min": 61,
+      "abandoned": 6,
+      "transferredCbsi": 4,
+      "slaHit5min": 89
+    },
+    {
+      "date": "2025-01-01",
+      "total": 144,
+      "answered": 137,
+      "answered30s": 2,
+      "answered2min": 2,
+      "abandoned": 1,
+      "transferredCbsi": 0,
+      "slaHit5min": 5
+    },
+    {
+      "date": "2025-01-02",
+      "total": 621,
+      "answered": 512,
+      "answered30s": 29,
+      "answered2min": 62,
+      "abandoned": 8,
+      "transferredCbsi": 58,
+      "slaHit5min": 148
+    },
+    {
+      "date": "2025-01-03",
+      "total": 514,
+      "answered": 424,
+      "answered30s": 34,
+      "answered2min": 47,
+      "abandoned": 21,
+      "transferredCbsi": 34,
+      "slaHit5min": 147
+    },
+    {
+      "date": "2025-01-04",
+      "total": 224,
+      "answered": 171,
+      "answered30s": 19,
+      "answered2min": 24,
+      "abandoned": 6,
+      "transferredCbsi": 27,
+      "slaHit5min": 67
+    },
+    {
+      "date": "2025-01-05",
+      "total": 196,
+      "answered": 182,
+      "answered30s": 15,
+      "answered2min": 21,
+      "abandoned": 0,
+      "transferredCbsi": 3,
+      "slaHit5min": 26
+    },
+    {
+      "date": "2025-01-06",
+      "total": 903,
+      "answered": 594,
+      "answered30s": 95,
+      "answered2min": 124,
+      "abandoned": 46,
+      "transferredCbsi": 189,
+      "slaHit5min": 407
+    },
+    {
+      "date": "2025-01-07",
+      "total": 1076,
+      "answered": 761,
+      "answered30s": 51,
+      "answered2min": 111,
+      "abandoned": 29,
+      "transferredCbsi": 195,
+      "slaHit5min": 404
+    },
+    {
+      "date": "2025-01-08",
+      "total": 833,
+      "answered": 601,
+      "answered30s": 38,
+      "answered2min": 83,
+      "abandoned": 28,
+      "transferredCbsi": 153,
+      "slaHit5min": 297
+    },
+    {
+      "date": "2025-01-09",
+      "total": 886,
+      "answered": 658,
+      "answered30s": 75,
+      "answered2min": 126,
+      "abandoned": 23,
+      "transferredCbsi": 123,
+      "slaHit5min": 323
+    },
+    {
+      "date": "2025-01-10",
+      "total": 904,
+      "answered": 751,
+      "answered30s": 75,
+      "answered2min": 138,
+      "abandoned": 26,
+      "transferredCbsi": 78,
+      "slaHit5min": 323
+    },
+    {
+      "date": "2025-01-11",
+      "total": 194,
+      "answered": 170,
+      "answered30s": 18,
+      "answered2min": 26,
+      "abandoned": 2,
+      "transferredCbsi": 12,
+      "slaHit5min": 47
+    },
+    {
+      "date": "2025-01-12",
+      "total": 159,
+      "answered": 143,
+      "answered30s": 4,
+      "answered2min": 9,
+      "abandoned": 1,
+      "transferredCbsi": 0,
+      "slaHit5min": 10
+    },
+    {
+      "date": "2025-01-13",
+      "total": 883,
+      "answered": 654,
+      "answered30s": 111,
+      "answered2min": 171,
+      "abandoned": 27,
+      "transferredCbsi": 108,
+      "slaHit5min": 362
+    },
+    {
+      "date": "2025-01-14",
+      "total": 812,
+      "answered": 670,
+      "answered30s": 55,
+      "answered2min": 87,
+      "abandoned": 19,
+      "transferredCbsi": 87,
+      "slaHit5min": 239
+    },
+    {
+      "date": "2025-01-15",
+      "total": 631,
+      "answered": 558,
+      "answered30s": 56,
+      "answered2min": 102,
+      "abandoned": 16,
+      "transferredCbsi": 15,
+      "slaHit5min": 154
+    },
+    {
+      "date": "2025-01-16",
+      "total": 557,
+      "answered": 458,
+      "answered30s": 32,
+      "answered2min": 80,
+      "abandoned": 14,
+      "transferredCbsi": 63,
+      "slaHit5min": 187
+    },
+    {
+      "date": "2025-01-17",
+      "total": 603,
+      "answered": 505,
+      "answered30s": 63,
+      "answered2min": 95,
+      "abandoned": 11,
+      "transferredCbsi": 21,
+      "slaHit5min": 177
+    },
+    {
+      "date": "2025-01-18",
+      "total": 211,
+      "answered": 162,
+      "answered30s": 29,
+      "answered2min": 33,
+      "abandoned": 6,
+      "transferredCbsi": 6,
+      "slaHit5min": 44
+    },
+    {
+      "date": "2025-01-19",
+      "total": 255,
+      "answered": 233,
+      "answered30s": 20,
+      "answered2min": 23,
+      "abandoned": 0,
+      "transferredCbsi": 3,
+      "slaHit5min": 26
+    },
+    {
+      "date": "2025-01-20",
+      "total": 731,
+      "answered": 554,
+      "answered30s": 62,
+      "answered2min": 104,
+      "abandoned": 15,
+      "transferredCbsi": 90,
+      "slaHit5min": 231
+    },
+    {
+      "date": "2025-01-21",
+      "total": 961,
+      "answered": 671,
+      "answered30s": 66,
+      "answered2min": 127,
+      "abandoned": 40,
+      "transferredCbsi": 153,
+      "slaHit5min": 348
+    },
+    {
+      "date": "2025-01-22",
+      "total": 1255,
+      "answered": 836,
+      "answered30s": 92,
+      "answered2min": 185,
+      "abandoned": 32,
+      "transferredCbsi": 297,
+      "slaHit5min": 566
+    },
+    {
+      "date": "2025-01-23",
+      "total": 715,
+      "answered": 591,
+      "answered30s": 44,
+      "answered2min": 86,
+      "abandoned": 22,
+      "transferredCbsi": 69,
+      "slaHit5min": 217
+    },
+    {
+      "date": "2025-01-24",
+      "total": 910,
+      "answered": 681,
+      "answered30s": 75,
+      "answered2min": 154,
+      "abandoned": 35,
+      "transferredCbsi": 105,
+      "slaHit5min": 351
+    },
+    {
+      "date": "2025-01-25",
+      "total": 172,
+      "answered": 142,
+      "answered30s": 10,
+      "answered2min": 18,
+      "abandoned": 0,
+      "transferredCbsi": 12,
+      "slaHit5min": 30
+    },
+    {
+      "date": "2025-01-26",
+      "total": 131,
+      "answered": 117,
+      "answered30s": 11,
+      "answered2min": 12,
+      "abandoned": 5,
+      "transferredCbsi": 0,
+      "slaHit5min": 19
+    },
+    {
+      "date": "2025-01-27",
+      "total": 905,
+      "answered": 746,
+      "answered30s": 90,
+      "answered2min": 147,
+      "abandoned": 29,
+      "transferredCbsi": 63,
+      "slaHit5min": 318
+    },
+    {
+      "date": "2025-01-28",
+      "total": 557,
+      "answered": 462,
+      "answered30s": 34,
+      "answered2min": 57,
+      "abandoned": 14,
+      "transferredCbsi": 27,
+      "slaHit5min": 125
+    },
+    {
+      "date": "2025-01-29",
+      "total": 619,
+      "answered": 538,
+      "answered30s": 40,
+      "answered2min": 66,
+      "abandoned": 17,
+      "transferredCbsi": 36,
+      "slaHit5min": 139
+    },
+    {
+      "date": "2025-01-30",
+      "total": 839,
+      "answered": 693,
+      "answered30s": 82,
+      "answered2min": 148,
+      "abandoned": 21,
+      "transferredCbsi": 51,
+      "slaHit5min": 279
+    },
+    {
+      "date": "2025-01-31",
+      "total": 601,
+      "answered": 512,
+      "answered30s": 46,
+      "answered2min": 99,
+      "abandoned": 12,
+      "transferredCbsi": 42,
+      "slaHit5min": 163
+    },
+    {
+      "date": "2025-02-01",
+      "total": 236,
+      "answered": 183,
+      "answered30s": 9,
+      "answered2min": 18,
+      "abandoned": 2,
+      "transferredCbsi": 30,
+      "slaHit5min": 60
+    },
+    {
+      "date": "2025-02-02",
+      "total": 256,
+      "answered": 223,
+      "answered30s": 17,
+      "answered2min": 23,
+      "abandoned": 2,
+      "transferredCbsi": 6,
+      "slaHit5min": 31
+    },
+    {
+      "date": "2025-02-03",
+      "total": 655,
+      "answered": 581,
+      "answered30s": 80,
+      "answered2min": 114,
+      "abandoned": 14,
+      "transferredCbsi": 18,
+      "slaHit5min": 158
+    },
+    {
+      "date": "2025-02-04",
+      "total": 889,
+      "answered": 670,
+      "answered30s": 76,
+      "answered2min": 122,
+      "abandoned": 27,
+      "transferredCbsi": 138,
+      "slaHit5min": 325
+    },
+    {
+      "date": "2025-02-05",
+      "total": 613,
+      "answered": 528,
+      "answered30s": 38,
+      "answered2min": 73,
+      "abandoned": 9,
+      "transferredCbsi": 43,
+      "slaHit5min": 158
+    },
+    {
+      "date": "2025-02-06",
+      "total": 818,
+      "answered": 653,
+      "answered30s": 75,
+      "answered2min": 123,
+      "abandoned": 22,
+      "transferredCbsi": 74,
+      "slaHit5min": 252
+    },
+    {
+      "date": "2025-02-07",
+      "total": 503,
+      "answered": 432,
+      "answered30s": 79,
+      "answered2min": 112,
+      "abandoned": 16,
+      "transferredCbsi": 6,
+      "slaHit5min": 143
+    },
+    {
+      "date": "2025-02-08",
+      "total": 217,
+      "answered": 184,
+      "answered30s": 17,
+      "answered2min": 41,
+      "abandoned": 1,
+      "transferredCbsi": 10,
+      "slaHit5min": 55
+    },
+    {
+      "date": "2025-02-09",
+      "total": 149,
+      "answered": 138,
+      "answered30s": 8,
+      "answered2min": 14,
+      "abandoned": 1,
+      "transferredCbsi": 10,
+      "slaHit5min": 25
+    },
+    {
+      "date": "2025-02-10",
+      "total": 621,
+      "answered": 533,
+      "answered30s": 120,
+      "answered2min": 160,
+      "abandoned": 10,
+      "transferredCbsi": 8,
+      "slaHit5min": 213
+    },
+    {
+      "date": "2025-02-11",
+      "total": 485,
+      "answered": 411,
+      "answered30s": 58,
+      "answered2min": 102,
+      "abandoned": 12,
+      "transferredCbsi": 30,
+      "slaHit5min": 180
+    },
+    {
+      "date": "2025-02-12",
+      "total": 487,
+      "answered": 419,
+      "answered30s": 44,
+      "answered2min": 64,
+      "abandoned": 1,
+      "transferredCbsi": 32,
+      "slaHit5min": 103
+    },
+    {
+      "date": "2025-02-13",
+      "total": 597,
+      "answered": 527,
+      "answered30s": 66,
+      "answered2min": 89,
+      "abandoned": 10,
+      "transferredCbsi": 10,
+      "slaHit5min": 123
+    },
+    {
+      "date": "2025-02-14",
+      "total": 576,
+      "answered": 492,
+      "answered30s": 57,
+      "answered2min": 74,
+      "abandoned": 13,
+      "transferredCbsi": 4,
+      "slaHit5min": 100
+    },
+    {
+      "date": "2025-02-15",
+      "total": 196,
+      "answered": 169,
+      "answered30s": 27,
+      "answered2min": 28,
+      "abandoned": 0,
+      "transferredCbsi": 6,
+      "slaHit5min": 35
+    },
+    {
+      "date": "2025-02-16",
+      "total": 209,
+      "answered": 183,
+      "answered30s": 7,
+      "answered2min": 8,
+      "abandoned": 1,
+      "transferredCbsi": 4,
+      "slaHit5min": 18
+    },
+    {
+      "date": "2025-02-17",
+      "total": 648,
+      "answered": 570,
+      "answered30s": 36,
+      "answered2min": 64,
+      "abandoned": 10,
+      "transferredCbsi": 26,
+      "slaHit5min": 114
+    },
+    {
+      "date": "2025-02-18",
+      "total": 508,
+      "answered": 438,
+      "answered30s": 45,
+      "answered2min": 85,
+      "abandoned": 11,
+      "transferredCbsi": 28,
+      "slaHit5min": 152
+    },
+    {
+      "date": "2025-02-19",
+      "total": 551,
+      "answered": 522,
+      "answered30s": 58,
+      "answered2min": 91,
+      "abandoned": 3,
+      "transferredCbsi": 8,
+      "slaHit5min": 127
+    },
+    {
+      "date": "2025-02-20",
+      "total": 765,
+      "answered": 545,
+      "answered30s": 53,
+      "answered2min": 78,
+      "abandoned": 14,
+      "transferredCbsi": 169,
+      "slaHit5min": 286
+    },
+    {
+      "date": "2025-02-21",
+      "total": 568,
+      "answered": 468,
+      "answered30s": 70,
+      "answered2min": 100,
+      "abandoned": 11,
+      "transferredCbsi": 10,
+      "slaHit5min": 150
+    },
+    {
+      "date": "2025-02-22",
+      "total": 118,
+      "answered": 106,
+      "answered30s": 16,
+      "answered2min": 18,
+      "abandoned": 0,
+      "transferredCbsi": 0,
+      "slaHit5min": 22
+    },
+    {
+      "date": "2025-02-23",
+      "total": 141,
+      "answered": 121,
+      "answered30s": 12,
+      "answered2min": 12,
+      "abandoned": 0,
+      "transferredCbsi": 8,
+      "slaHit5min": 20
+    },
+    {
+      "date": "2025-02-24",
+      "total": 527,
+      "answered": 440,
+      "answered30s": 54,
+      "answered2min": 78,
+      "abandoned": 20,
+      "transferredCbsi": 10,
+      "slaHit5min": 135
+    },
+    {
+      "date": "2025-02-25",
+      "total": 604,
+      "answered": 481,
+      "answered30s": 61,
+      "answered2min": 108,
+      "abandoned": 14,
+      "transferredCbsi": 43,
+      "slaHit5min": 207
+    },
+    {
+      "date": "2025-02-26",
+      "total": 642,
+      "answered": 562,
+      "answered30s": 75,
+      "answered2min": 91,
+      "abandoned": 9,
+      "transferredCbsi": 13,
+      "slaHit5min": 134
+    },
+    {
+      "date": "2025-02-27",
+      "total": 645,
+      "answered": 497,
+      "answered30s": 32,
+      "answered2min": 62,
+      "abandoned": 11,
+      "transferredCbsi": 42,
+      "slaHit5min": 156
+    },
+    {
+      "date": "2025-02-28",
+      "total": 492,
+      "answered": 442,
+      "answered30s": 53,
+      "answered2min": 81,
+      "abandoned": 5,
+      "transferredCbsi": 10,
+      "slaHit5min": 135
+    },
+    {
+      "date": "2025-03-01",
+      "total": 188,
+      "answered": 156,
+      "answered30s": 15,
+      "answered2min": 26,
+      "abandoned": 1,
+      "transferredCbsi": 10,
+      "slaHit5min": 47
+    },
+    {
+      "date": "2025-03-02",
+      "total": 101,
+      "answered": 95,
+      "answered30s": 6,
+      "answered2min": 11,
+      "abandoned": 0,
+      "transferredCbsi": 4,
+      "slaHit5min": 15
+    },
+    {
+      "date": "2025-03-03",
+      "total": 437,
+      "answered": 374,
+      "answered30s": 56,
+      "answered2min": 76,
+      "abandoned": 4,
+      "transferredCbsi": 23,
+      "slaHit5min": 121
+    },
+    {
+      "date": "2025-03-04",
+      "total": 539,
+      "answered": 466,
+      "answered30s": 81,
+      "answered2min": 106,
+      "abandoned": 12,
+      "transferredCbsi": 16,
+      "slaHit5min": 160
+    },
+    {
+      "date": "2025-03-05",
+      "total": 625,
+      "answered": 513,
+      "answered30s": 83,
+      "answered2min": 106,
+      "abandoned": 15,
+      "transferredCbsi": 16,
+      "slaHit5min": 195
+    },
+    {
+      "date": "2025-03-06",
+      "total": 491,
+      "answered": 423,
+      "answered30s": 52,
+      "answered2min": 73,
+      "abandoned": 10,
+      "transferredCbsi": 8,
+      "slaHit5min": 105
+    },
+    {
+      "date": "2025-03-07",
+      "total": 492,
+      "answered": 399,
+      "answered30s": 44,
+      "answered2min": 62,
+      "abandoned": 5,
+      "transferredCbsi": 32,
+      "slaHit5min": 121
+    },
+    {
+      "date": "2025-03-08",
+      "total": 181,
+      "answered": 165,
+      "answered30s": 19,
+      "answered2min": 27,
+      "abandoned": 1,
+      "transferredCbsi": 13,
+      "slaHit5min": 47
+    },
+    {
+      "date": "2025-03-09",
+      "total": 117,
+      "answered": 105,
+      "answered30s": 10,
+      "answered2min": 16,
+      "abandoned": 0,
+      "transferredCbsi": 8,
+      "slaHit5min": 24
+    },
+    {
+      "date": "2025-03-10",
+      "total": 521,
+      "answered": 448,
+      "answered30s": 68,
+      "answered2min": 95,
+      "abandoned": 7,
+      "transferredCbsi": 31,
+      "slaHit5min": 173
+    },
+    {
+      "date": "2025-03-11",
+      "total": 502,
+      "answered": 424,
+      "answered30s": 64,
+      "answered2min": 90,
+      "abandoned": 7,
+      "transferredCbsi": 40,
+      "slaHit5min": 161
+    },
+    {
+      "date": "2025-03-12",
+      "total": 673,
+      "answered": 568,
+      "answered30s": 117,
+      "answered2min": 141,
+      "abandoned": 4,
+      "transferredCbsi": 24,
+      "slaHit5min": 204
+    },
+    {
+      "date": "2025-03-13",
+      "total": 541,
+      "answered": 437,
+      "answered30s": 57,
+      "answered2min": 80,
+      "abandoned": 6,
+      "transferredCbsi": 43,
+      "slaHit5min": 144
+    },
+    {
+      "date": "2025-03-14",
+      "total": 772,
+      "answered": 605,
+      "answered30s": 121,
+      "answered2min": 149,
+      "abandoned": 20,
+      "transferredCbsi": 60,
+      "slaHit5min": 269
+    },
+    {
+      "date": "2025-03-15",
+      "total": 195,
+      "answered": 157,
+      "answered30s": 13,
+      "answered2min": 28,
+      "abandoned": 12,
+      "transferredCbsi": 11,
+      "slaHit5min": 48
+    },
+    {
+      "date": "2025-03-16",
+      "total": 180,
+      "answered": 158,
+      "answered30s": 19,
+      "answered2min": 20,
+      "abandoned": 1,
+      "transferredCbsi": 17,
+      "slaHit5min": 41
+    },
+    {
+      "date": "2025-03-17",
+      "total": 666,
+      "answered": 539,
+      "answered30s": 82,
+      "answered2min": 121,
+      "abandoned": 6,
+      "transferredCbsi": 43,
+      "slaHit5min": 211
+    },
+    {
+      "date": "2025-03-18",
+      "total": 715,
+      "answered": 542,
+      "answered30s": 127,
+      "answered2min": 160,
+      "abandoned": 15,
+      "transferredCbsi": 71,
+      "slaHit5min": 265
+    },
+    {
+      "date": "2025-03-19",
+      "total": 501,
+      "answered": 438,
+      "answered30s": 65,
+      "answered2min": 100,
+      "abandoned": 7,
+      "transferredCbsi": 32,
+      "slaHit5min": 161
+    },
+    {
+      "date": "2025-03-20",
+      "total": 483,
+      "answered": 377,
+      "answered30s": 57,
+      "answered2min": 70,
+      "abandoned": 16,
+      "transferredCbsi": 58,
+      "slaHit5min": 156
+    },
+    {
+      "date": "2025-03-21",
+      "total": 506,
+      "answered": 419,
+      "answered30s": 81,
+      "answered2min": 105,
+      "abandoned": 13,
+      "transferredCbsi": 7,
+      "slaHit5min": 157
+    },
+    {
+      "date": "2025-03-22",
+      "total": 101,
+      "answered": 96,
+      "answered30s": 13,
+      "answered2min": 13,
+      "abandoned": 1,
+      "transferredCbsi": 1,
+      "slaHit5min": 21
+    },
+    {
+      "date": "2025-03-23",
+      "total": 131,
+      "answered": 111,
+      "answered30s": 16,
+      "answered2min": 26,
+      "abandoned": 0,
+      "transferredCbsi": 11,
+      "slaHit5min": 37
+    },
+    {
+      "date": "2025-03-24",
+      "total": 548,
+      "answered": 473,
+      "answered30s": 70,
+      "answered2min": 89,
+      "abandoned": 8,
+      "transferredCbsi": 14,
+      "slaHit5min": 154
+    },
+    {
+      "date": "2025-03-25",
+      "total": 747,
+      "answered": 634,
+      "answered30s": 100,
+      "answered2min": 135,
+      "abandoned": 18,
+      "transferredCbsi": 43,
+      "slaHit5min": 220
+    },
+    {
+      "date": "2025-03-26",
+      "total": 480,
+      "answered": 420,
+      "answered30s": 40,
+      "answered2min": 52,
+      "abandoned": 3,
+      "transferredCbsi": 10,
+      "slaHit5min": 73
+    },
+    {
+      "date": "2025-03-27",
+      "total": 625,
+      "answered": 520,
+      "answered30s": 71,
+      "answered2min": 93,
+      "abandoned": 4,
+      "transferredCbsi": 55,
+      "slaHit5min": 170
+    },
+    {
+      "date": "2025-03-28",
+      "total": 592,
+      "answered": 492,
+      "answered30s": 114,
+      "answered2min": 136,
+      "abandoned": 18,
+      "transferredCbsi": 25,
+      "slaHit5min": 199
+    },
+    {
+      "date": "2025-03-29",
+      "total": 270,
+      "answered": 226,
+      "answered30s": 21,
+      "answered2min": 44,
+      "abandoned": 2,
+      "transferredCbsi": 30,
+      "slaHit5min": 86
+    },
+    {
+      "date": "2025-03-30",
+      "total": 231,
+      "answered": 206,
+      "answered30s": 10,
+      "answered2min": 12,
+      "abandoned": 1,
+      "transferredCbsi": 11,
+      "slaHit5min": 30
+    },
+    {
+      "date": "2025-03-31",
+      "total": 663,
+      "answered": 593,
+      "answered30s": 64,
+      "answered2min": 88,
+      "abandoned": 8,
+      "transferredCbsi": 23,
+      "slaHit5min": 134
+    },
+    {
+      "date": "2025-04-01",
+      "total": 747,
+      "answered": 571,
+      "answered30s": 64,
+      "answered2min": 99,
+      "abandoned": 3,
+      "transferredCbsi": 67,
+      "slaHit5min": 198
+    },
+    {
+      "date": "2025-04-02",
+      "total": 502,
+      "answered": 452,
+      "answered30s": 38,
+      "answered2min": 80,
+      "abandoned": 5,
+      "transferredCbsi": 18,
+      "slaHit5min": 123
+    },
+    {
+      "date": "2025-04-03",
+      "total": 618,
+      "answered": 524,
+      "answered30s": 70,
+      "answered2min": 101,
+      "abandoned": 9,
+      "transferredCbsi": 27,
+      "slaHit5min": 153
+    },
+    {
+      "date": "2025-04-04",
+      "total": 596,
+      "answered": 499,
+      "answered30s": 81,
+      "answered2min": 107,
+      "abandoned": 7,
+      "transferredCbsi": 41,
+      "slaHit5min": 175
+    },
+    {
+      "date": "2025-04-05",
+      "total": 284,
+      "answered": 228,
+      "answered30s": 23,
+      "answered2min": 46,
+      "abandoned": 3,
+      "transferredCbsi": 20,
+      "slaHit5min": 87
+    },
+    {
+      "date": "2025-04-06",
+      "total": 126,
+      "answered": 121,
+      "answered30s": 12,
+      "answered2min": 12,
+      "abandoned": 0,
+      "transferredCbsi": 4,
+      "slaHit5min": 19
+    },
+    {
+      "date": "2025-04-07",
+      "total": 633,
+      "answered": 522,
+      "answered30s": 63,
+      "answered2min": 102,
+      "abandoned": 6,
+      "transferredCbsi": 62,
+      "slaHit5min": 199
+    },
+    {
+      "date": "2025-04-08",
+      "total": 562,
+      "answered": 456,
+      "answered30s": 67,
+      "answered2min": 93,
+      "abandoned": 5,
+      "transferredCbsi": 44,
+      "slaHit5min": 157
+    },
+    {
+      "date": "2025-04-09",
+      "total": 663,
+      "answered": 571,
+      "answered30s": 77,
+      "answered2min": 104,
+      "abandoned": 5,
+      "transferredCbsi": 17,
+      "slaHit5min": 147
+    },
+    {
+      "date": "2025-04-10",
+      "total": 750,
+      "answered": 553,
+      "answered30s": 57,
+      "answered2min": 84,
+      "abandoned": 19,
+      "transferredCbsi": 73,
+      "slaHit5min": 206
+    },
+    {
+      "date": "2025-04-11",
+      "total": 685,
+      "answered": 572,
+      "answered30s": 93,
+      "answered2min": 144,
+      "abandoned": 23,
+      "transferredCbsi": 35,
+      "slaHit5min": 226
+    },
+    {
+      "date": "2025-04-12",
+      "total": 225,
+      "answered": 187,
+      "answered30s": 16,
+      "answered2min": 31,
+      "abandoned": 2,
+      "transferredCbsi": 11,
+      "slaHit5min": 52
+    },
+    {
+      "date": "2025-04-13",
+      "total": 137,
+      "answered": 114,
+      "answered30s": 5,
+      "answered2min": 6,
+      "abandoned": 1,
+      "transferredCbsi": 11,
+      "slaHit5min": 20
+    },
+    {
+      "date": "2025-04-14",
+      "total": 677,
+      "answered": 549,
+      "answered30s": 106,
+      "answered2min": 146,
+      "abandoned": 11,
+      "transferredCbsi": 42,
+      "slaHit5min": 252
+    },
+    {
+      "date": "2025-04-15",
+      "total": 750,
+      "answered": 558,
+      "answered30s": 48,
+      "answered2min": 99,
+      "abandoned": 18,
+      "transferredCbsi": 94,
+      "slaHit5min": 229
+    },
+    {
+      "date": "2025-04-16",
+      "total": 846,
+      "answered": 684,
+      "answered30s": 94,
+      "answered2min": 143,
+      "abandoned": 10,
+      "transferredCbsi": 64,
+      "slaHit5min": 256
+    },
+    {
+      "date": "2025-04-17",
+      "total": 793,
+      "answered": 663,
+      "answered30s": 55,
+      "answered2min": 87,
+      "abandoned": 7,
+      "transferredCbsi": 77,
+      "slaHit5min": 213
+    },
+    {
+      "date": "2025-04-18",
+      "total": 696,
+      "answered": 535,
+      "answered30s": 83,
+      "answered2min": 117,
+      "abandoned": 7,
+      "transferredCbsi": 77,
+      "slaHit5min": 229
+    },
+    {
+      "date": "2025-04-19",
+      "total": 357,
+      "answered": 247,
+      "answered30s": 37,
+      "answered2min": 62,
+      "abandoned": 3,
+      "transferredCbsi": 79,
+      "slaHit5min": 152
+    },
+    {
+      "date": "2025-04-20",
+      "total": 174,
+      "answered": 163,
+      "answered30s": 10,
+      "answered2min": 24,
+      "abandoned": 0,
+      "transferredCbsi": 0,
+      "slaHit5min": 24
+    },
+    {
+      "date": "2025-04-21",
+      "total": 837,
+      "answered": 662,
+      "answered30s": 91,
+      "answered2min": 124,
+      "abandoned": 11,
+      "transferredCbsi": 57,
+      "slaHit5min": 229
+    },
+    {
+      "date": "2025-04-22",
+      "total": 688,
+      "answered": 544,
+      "answered30s": 62,
+      "answered2min": 107,
+      "abandoned": 16,
+      "transferredCbsi": 78,
+      "slaHit5min": 217
+    },
+    {
+      "date": "2025-04-23",
+      "total": 971,
+      "answered": 806,
+      "answered30s": 93,
+      "answered2min": 159,
+      "abandoned": 7,
+      "transferredCbsi": 86,
+      "slaHit5min": 286
+    },
+    {
+      "date": "2025-04-24",
+      "total": 861,
+      "answered": 702,
+      "answered30s": 56,
+      "answered2min": 96,
+      "abandoned": 4,
+      "transferredCbsi": 67,
+      "slaHit5min": 198
+    },
+    {
+      "date": "2025-04-25",
+      "total": 935,
+      "answered": 747,
+      "answered30s": 101,
+      "answered2min": 148,
+      "abandoned": 13,
+      "transferredCbsi": 63,
+      "slaHit5min": 254
+    },
+    {
+      "date": "2025-04-26",
+      "total": 381,
+      "answered": 323,
+      "answered30s": 42,
+      "answered2min": 82,
+      "abandoned": 4,
+      "transferredCbsi": 23,
+      "slaHit5min": 132
+    },
+    {
+      "date": "2025-04-27",
+      "total": 174,
+      "answered": 157,
+      "answered30s": 13,
+      "answered2min": 15,
+      "abandoned": 1,
+      "transferredCbsi": 11,
+      "slaHit5min": 35
+    },
+    {
+      "date": "2025-04-28",
+      "total": 934,
+      "answered": 688,
+      "answered30s": 90,
+      "answered2min": 164,
+      "abandoned": 15,
+      "transferredCbsi": 102,
+      "slaHit5min": 321
+    },
+    {
+      "date": "2025-04-29",
+      "total": 959,
+      "answered": 740,
+      "answered30s": 113,
+      "answered2min": 184,
+      "abandoned": 10,
+      "transferredCbsi": 106,
+      "slaHit5min": 343
+    },
+    {
+      "date": "2025-04-30",
+      "total": 973,
+      "answered": 783,
+      "answered30s": 92,
+      "answered2min": 147,
+      "abandoned": 3,
+      "transferredCbsi": 103,
+      "slaHit5min": 305
+    },
+    {
+      "date": "2025-05-01",
+      "total": 934,
+      "answered": 776,
+      "answered30s": 50,
+      "answered2min": 80,
+      "abandoned": 3,
+      "transferredCbsi": 91,
+      "slaHit5min": 191
+    },
+    {
+      "date": "2025-05-02",
+      "total": 866,
+      "answered": 646,
+      "answered30s": 114,
+      "answered2min": 164,
+      "abandoned": 7,
+      "transferredCbsi": 104,
+      "slaHit5min": 303
+    },
+    {
+      "date": "2025-05-03",
+      "total": 349,
+      "answered": 307,
+      "answered30s": 11,
+      "answered2min": 21,
+      "abandoned": 2,
+      "transferredCbsi": 28,
+      "slaHit5min": 55
+    },
+    {
+      "date": "2025-05-04",
+      "total": 202,
+      "answered": 186,
+      "answered30s": 9,
+      "answered2min": 17,
+      "abandoned": 0,
+      "transferredCbsi": 11,
+      "slaHit5min": 32
+    },
+    {
+      "date": "2025-05-05",
+      "total": 684,
+      "answered": 558,
+      "answered30s": 98,
+      "answered2min": 123,
+      "abandoned": 5,
+      "transferredCbsi": 47,
+      "slaHit5min": 188
+    },
+    {
+      "date": "2025-05-06",
+      "total": 658,
+      "answered": 541,
+      "answered30s": 61,
+      "answered2min": 103,
+      "abandoned": 8,
+      "transferredCbsi": 52,
+      "slaHit5min": 199
+    },
+    {
+      "date": "2025-05-07",
+      "total": 763,
+      "answered": 629,
+      "answered30s": 40,
+      "answered2min": 101,
+      "abandoned": 9,
+      "transferredCbsi": 62,
+      "slaHit5min": 202
+    },
+    {
+      "date": "2025-05-08",
+      "total": 935,
+      "answered": 778,
+      "answered30s": 48,
+      "answered2min": 96,
+      "abandoned": 14,
+      "transferredCbsi": 75,
+      "slaHit5min": 211
+    },
+    {
+      "date": "2025-05-09",
+      "total": 818,
+      "answered": 624,
+      "answered30s": 80,
+      "answered2min": 122,
+      "abandoned": 6,
+      "transferredCbsi": 106,
+      "slaHit5min": 286
+    },
+    {
+      "date": "2025-05-10",
+      "total": 399,
+      "answered": 324,
+      "answered30s": 36,
+      "answered2min": 45,
+      "abandoned": 1,
+      "transferredCbsi": 46,
+      "slaHit5min": 99
+    },
+    {
+      "date": "2025-05-11",
+      "total": 267,
+      "answered": 252,
+      "answered30s": 11,
+      "answered2min": 14,
+      "abandoned": 0,
+      "transferredCbsi": 12,
+      "slaHit5min": 28
+    },
+    {
+      "date": "2025-05-12",
+      "total": 933,
+      "answered": 772,
+      "answered30s": 71,
+      "answered2min": 152,
+      "abandoned": 12,
+      "transferredCbsi": 74,
+      "slaHit5min": 302
+    },
+    {
+      "date": "2025-05-13",
+      "total": 1006,
+      "answered": 826,
+      "answered30s": 72,
+      "answered2min": 156,
+      "abandoned": 8,
+      "transferredCbsi": 99,
+      "slaHit5min": 315
+    },
+    {
+      "date": "2025-05-14",
+      "total": 1291,
+      "answered": 1012,
+      "answered30s": 89,
+      "answered2min": 197,
+      "abandoned": 13,
+      "transferredCbsi": 164,
+      "slaHit5min": 416
+    },
+    {
+      "date": "2025-05-15",
+      "total": 1311,
+      "answered": 994,
+      "answered30s": 134,
+      "answered2min": 209,
+      "abandoned": 7,
+      "transferredCbsi": 167,
+      "slaHit5min": 472
+    },
+    {
+      "date": "2025-05-16",
+      "total": 1075,
+      "answered": 849,
+      "answered30s": 195,
+      "answered2min": 293,
+      "abandoned": 0,
+      "transferredCbsi": 91,
+      "slaHit5min": 435
+    },
+    {
+      "date": "2025-05-17",
+      "total": 372,
+      "answered": 278,
+      "answered30s": 34,
+      "answered2min": 70,
+      "abandoned": 2,
+      "transferredCbsi": 71,
+      "slaHit5min": 142
+    },
+    {
+      "date": "2025-05-18",
+      "total": 265,
+      "answered": 235,
+      "answered30s": 22,
+      "answered2min": 29,
+      "abandoned": 2,
+      "transferredCbsi": 5,
+      "slaHit5min": 42
+    },
+    {
+      "date": "2025-05-19",
+      "total": 832,
+      "answered": 684,
+      "answered30s": 108,
+      "answered2min": 188,
+      "abandoned": 2,
+      "transferredCbsi": 73,
+      "slaHit5min": 304
+    },
+    {
+      "date": "2025-05-20",
+      "total": 860,
+      "answered": 703,
+      "answered30s": 106,
+      "answered2min": 198,
+      "abandoned": 10,
+      "transferredCbsi": 58,
+      "slaHit5min": 337
+    },
+    {
+      "date": "2025-05-21",
+      "total": 687,
+      "answered": 606,
+      "answered30s": 72,
+      "answered2min": 86,
+      "abandoned": 1,
+      "transferredCbsi": 34,
+      "slaHit5min": 148
+    },
+    {
+      "date": "2025-05-22",
+      "total": 804,
+      "answered": 692,
+      "answered30s": 42,
+      "answered2min": 70,
+      "abandoned": 8,
+      "transferredCbsi": 44,
+      "slaHit5min": 128
+    },
+    {
+      "date": "2025-05-23",
+      "total": 809,
+      "answered": 710,
+      "answered30s": 87,
+      "answered2min": 129,
+      "abandoned": 0,
+      "transferredCbsi": 27,
+      "slaHit5min": 163
+    },
+    {
+      "date": "2025-05-24",
+      "total": 380,
+      "answered": 340,
+      "answered30s": 48,
+      "answered2min": 64,
+      "abandoned": 1,
+      "transferredCbsi": 20,
+      "slaHit5min": 102
+    },
+    {
+      "date": "2025-05-25",
+      "total": 180,
+      "answered": 164,
+      "answered30s": 14,
+      "answered2min": 22,
+      "abandoned": 0,
+      "transferredCbsi": 3,
+      "slaHit5min": 29
+    },
+    {
+      "date": "2025-05-26",
+      "total": 232,
+      "answered": 214,
+      "answered30s": 13,
+      "answered2min": 30,
+      "abandoned": 3,
+      "transferredCbsi": 5,
+      "slaHit5min": 47
+    },
+    {
+      "date": "2025-05-27",
+      "total": 1116,
+      "answered": 941,
+      "answered30s": 136,
+      "answered2min": 226,
+      "abandoned": 8,
+      "transferredCbsi": 69,
+      "slaHit5min": 433
+    },
+    {
+      "date": "2025-05-28",
+      "total": 897,
+      "answered": 783,
+      "answered30s": 65,
+      "answered2min": 113,
+      "abandoned": 9,
+      "transferredCbsi": 63,
+      "slaHit5min": 202
+    },
+    {
+      "date": "2025-05-29",
+      "total": 928,
+      "answered": 791,
+      "answered30s": 65,
+      "answered2min": 123,
+      "abandoned": 4,
+      "transferredCbsi": 69,
+      "slaHit5min": 214
+    },
+    {
+      "date": "2025-05-30",
+      "total": 1029,
+      "answered": 877,
+      "answered30s": 94,
+      "answered2min": 168,
+      "abandoned": 7,
+      "transferredCbsi": 70,
+      "slaHit5min": 318
+    },
+    {
+      "date": "2025-05-31",
+      "total": 404,
+      "answered": 320,
+      "answered30s": 31,
+      "answered2min": 58,
+      "abandoned": 3,
+      "transferredCbsi": 43,
+      "slaHit5min": 111
+    },
+    {
+      "date": "2025-06-01",
+      "total": 222,
+      "answered": 196,
+      "answered30s": 21,
+      "answered2min": 34,
+      "abandoned": 0,
+      "transferredCbsi": 8,
+      "slaHit5min": 45
+    },
+    {
+      "date": "2025-06-02",
+      "total": 1047,
+      "answered": 888,
+      "answered30s": 100,
+      "answered2min": 194,
+      "abandoned": 8,
+      "transferredCbsi": 78,
+      "slaHit5min": 371
+    },
+    {
+      "date": "2025-06-03",
+      "total": 1003,
+      "answered": 797,
+      "answered30s": 92,
+      "answered2min": 161,
+      "abandoned": 15,
+      "transferredCbsi": 86,
+      "slaHit5min": 309
+    },
+    {
+      "date": "2025-06-04",
+      "total": 961,
+      "answered": 875,
+      "answered30s": 72,
+      "answered2min": 136,
+      "abandoned": 9,
+      "transferredCbsi": 50,
+      "slaHit5min": 239
+    },
+    {
+      "date": "2025-06-05",
+      "total": 1008,
+      "answered": 825,
+      "answered30s": 85,
+      "answered2min": 146,
+      "abandoned": 17,
+      "transferredCbsi": 87,
+      "slaHit5min": 278
+    },
+    {
+      "date": "2025-06-06",
+      "total": 1019,
+      "answered": 859,
+      "answered30s": 100,
+      "answered2min": 142,
+      "abandoned": 10,
+      "transferredCbsi": 83,
+      "slaHit5min": 295
+    },
+    {
+      "date": "2025-06-07",
+      "total": 489,
+      "answered": 428,
+      "answered30s": 49,
+      "answered2min": 94,
+      "abandoned": 4,
+      "transferredCbsi": 36,
+      "slaHit5min": 142
+    },
+    {
+      "date": "2025-06-08",
+      "total": 224,
+      "answered": 201,
+      "answered30s": 16,
+      "answered2min": 17,
+      "abandoned": 1,
+      "transferredCbsi": 9,
+      "slaHit5min": 26
+    },
+    {
+      "date": "2025-06-09",
+      "total": 1097,
+      "answered": 856,
+      "answered30s": 158,
+      "answered2min": 234,
+      "abandoned": 23,
+      "transferredCbsi": 91,
+      "slaHit5min": 406
+    },
+    {
+      "date": "2025-06-10",
+      "total": 865,
+      "answered": 748,
+      "answered30s": 73,
+      "answered2min": 117,
+      "abandoned": 9,
+      "transferredCbsi": 44,
+      "slaHit5min": 229
+    },
+    {
+      "date": "2025-06-11",
+      "total": 921,
+      "answered": 761,
+      "answered30s": 137,
+      "answered2min": 216,
+      "abandoned": 15,
+      "transferredCbsi": 57,
+      "slaHit5min": 342
+    },
+    {
+      "date": "2025-06-12",
+      "total": 1019,
+      "answered": 854,
+      "answered30s": 117,
+      "answered2min": 182,
+      "abandoned": 10,
+      "transferredCbsi": 72,
+      "slaHit5min": 295
+    },
+    {
+      "date": "2025-06-13",
+      "total": 850,
+      "answered": 657,
+      "answered30s": 120,
+      "answered2min": 149,
+      "abandoned": 14,
+      "transferredCbsi": 57,
+      "slaHit5min": 283
+    },
+    {
+      "date": "2025-06-14",
+      "total": 526,
+      "answered": 343,
+      "answered30s": 63,
+      "answered2min": 69,
+      "abandoned": 3,
+      "transferredCbsi": 117,
+      "slaHit5min": 199
+    },
+    {
+      "date": "2025-06-15",
+      "total": 280,
+      "answered": 235,
+      "answered30s": 15,
+      "answered2min": 21,
+      "abandoned": 1,
+      "transferredCbsi": 8,
+      "slaHit5min": 30
+    },
+    {
+      "date": "2025-06-16",
+      "total": 1015,
+      "answered": 815,
+      "answered30s": 114,
+      "answered2min": 171,
+      "abandoned": 22,
+      "transferredCbsi": 58,
+      "slaHit5min": 338
+    },
+    {
+      "date": "2025-06-17",
+      "total": 1000,
+      "answered": 786,
+      "answered30s": 117,
+      "answered2min": 201,
+      "abandoned": 33,
+      "transferredCbsi": 67,
+      "slaHit5min": 360
+    },
+    {
+      "date": "2025-06-18",
+      "total": 1212,
+      "answered": 952,
+      "answered30s": 149,
+      "answered2min": 263,
+      "abandoned": 21,
+      "transferredCbsi": 76,
+      "slaHit5min": 437
+    },
+    {
+      "date": "2025-06-19",
+      "total": 1112,
+      "answered": 850,
+      "answered30s": 152,
+      "answered2min": 226,
+      "abandoned": 15,
+      "transferredCbsi": 64,
+      "slaHit5min": 342
+    },
+    {
+      "date": "2025-06-20",
+      "total": 1124,
+      "answered": 860,
+      "answered30s": 152,
+      "answered2min": 220,
+      "abandoned": 18,
+      "transferredCbsi": 58,
+      "slaHit5min": 355
+    },
+    {
+      "date": "2025-06-21",
+      "total": 384,
+      "answered": 301,
+      "answered30s": 48,
+      "answered2min": 77,
+      "abandoned": 6,
+      "transferredCbsi": 40,
+      "slaHit5min": 127
+    },
+    {
+      "date": "2025-06-22",
+      "total": 392,
+      "answered": 320,
+      "answered30s": 61,
+      "answered2min": 92,
+      "abandoned": 8,
+      "transferredCbsi": 13,
+      "slaHit5min": 112
+    },
+    {
+      "date": "2025-06-23",
+      "total": 1055,
+      "answered": 783,
+      "answered30s": 126,
+      "answered2min": 180,
+      "abandoned": 25,
+      "transferredCbsi": 141,
+      "slaHit5min": 432
+    },
+    {
+      "date": "2025-06-24",
+      "total": 1082,
+      "answered": 782,
+      "answered30s": 127,
+      "answered2min": 203,
+      "abandoned": 19,
+      "transferredCbsi": 172,
+      "slaHit5min": 470
+    },
+    {
+      "date": "2025-06-25",
+      "total": 1082,
+      "answered": 852,
+      "answered30s": 99,
+      "answered2min": 205,
+      "abandoned": 16,
+      "transferredCbsi": 126,
+      "slaHit5min": 430
+    },
+    {
+      "date": "2025-06-26",
+      "total": 1314,
+      "answered": 1025,
+      "answered30s": 120,
+      "answered2min": 225,
+      "abandoned": 10,
+      "transferredCbsi": 146,
+      "slaHit5min": 447
+    },
+    {
+      "date": "2025-06-27",
+      "total": 922,
+      "answered": 792,
+      "answered30s": 82,
+      "answered2min": 156,
+      "abandoned": 10,
+      "transferredCbsi": 54,
+      "slaHit5min": 252
+    },
+    {
+      "date": "2025-06-28",
+      "total": 538,
+      "answered": 437,
+      "answered30s": 44,
+      "answered2min": 86,
+      "abandoned": 5,
+      "transferredCbsi": 38,
+      "slaHit5min": 140
+    },
+    {
+      "date": "2025-06-29",
+      "total": 270,
+      "answered": 254,
+      "answered30s": 15,
+      "answered2min": 25,
+      "abandoned": 2,
+      "transferredCbsi": 4,
+      "slaHit5min": 42
+    },
+    {
+      "date": "2025-06-30",
+      "total": 1122,
+      "answered": 900,
+      "answered30s": 75,
+      "answered2min": 160,
+      "abandoned": 13,
+      "transferredCbsi": 100,
+      "slaHit5min": 344
+    },
+    {
+      "date": "2025-07-01",
+      "total": 1131,
+      "answered": 869,
+      "answered30s": 94,
+      "answered2min": 173,
+      "abandoned": 2,
+      "transferredCbsi": 127,
+      "slaHit5min": 363
+    },
+    {
+      "date": "2025-07-02",
+      "total": 1115,
+      "answered": 858,
+      "answered30s": 64,
+      "answered2min": 130,
+      "abandoned": 12,
+      "transferredCbsi": 129,
+      "slaHit5min": 311
+    },
+    {
+      "date": "2025-07-03",
+      "total": 1203,
+      "answered": 947,
+      "answered30s": 112,
+      "answered2min": 141,
+      "abandoned": 12,
+      "transferredCbsi": 98,
+      "slaHit5min": 285
+    },
+    {
+      "date": "2025-07-04",
+      "total": 423,
+      "answered": 390,
+      "answered30s": 11,
+      "answered2min": 30,
+      "abandoned": 1,
+      "transferredCbsi": 8,
+      "slaHit5min": 45
+    },
+    {
+      "date": "2025-07-05",
+      "total": 402,
+      "answered": 346,
+      "answered30s": 46,
+      "answered2min": 61,
+      "abandoned": 5,
+      "transferredCbsi": 19,
+      "slaHit5min": 95
+    },
+    {
+      "date": "2025-07-06",
+      "total": 286,
+      "answered": 262,
+      "answered30s": 9,
+      "answered2min": 15,
+      "abandoned": 2,
+      "transferredCbsi": 4,
+      "slaHit5min": 28
+    },
+    {
+      "date": "2025-07-07",
+      "total": 1111,
+      "answered": 841,
+      "answered30s": 117,
+      "answered2min": 171,
+      "abandoned": 16,
+      "transferredCbsi": 131,
+      "slaHit5min": 400
+    },
+    {
+      "date": "2025-07-08",
+      "total": 847,
+      "answered": 694,
+      "answered30s": 94,
+      "answered2min": 185,
+      "abandoned": 10,
+      "transferredCbsi": 79,
+      "slaHit5min": 342
+    },
+    {
+      "date": "2025-07-09",
+      "total": 954,
+      "answered": 762,
+      "answered30s": 93,
+      "answered2min": 170,
+      "abandoned": 9,
+      "transferredCbsi": 68,
+      "slaHit5min": 278
+    },
+    {
+      "date": "2025-07-10",
+      "total": 984,
+      "answered": 833,
+      "answered30s": 74,
+      "answered2min": 139,
+      "abandoned": 8,
+      "transferredCbsi": 74,
+      "slaHit5min": 255
+    },
+    {
+      "date": "2025-07-11",
+      "total": 1261,
+      "answered": 887,
+      "answered30s": 126,
+      "answered2min": 175,
+      "abandoned": 14,
+      "transferredCbsi": 225,
+      "slaHit5min": 519
+    },
+    {
+      "date": "2025-07-12",
+      "total": 469,
+      "answered": 385,
+      "answered30s": 39,
+      "answered2min": 54,
+      "abandoned": 9,
+      "transferredCbsi": 36,
+      "slaHit5min": 126
+    },
+    {
+      "date": "2025-07-13",
+      "total": 413,
+      "answered": 371,
+      "answered30s": 28,
+      "answered2min": 52,
+      "abandoned": 3,
+      "transferredCbsi": 12,
+      "slaHit5min": 71
+    },
+    {
+      "date": "2025-07-14",
+      "total": 969,
+      "answered": 776,
+      "answered30s": 38,
+      "answered2min": 89,
+      "abandoned": 8,
+      "transferredCbsi": 88,
+      "slaHit5min": 243
+    },
+    {
+      "date": "2025-07-15",
+      "total": 1051,
+      "answered": 803,
+      "answered30s": 92,
+      "answered2min": 177,
+      "abandoned": 16,
+      "transferredCbsi": 131,
+      "slaHit5min": 384
+    },
+    {
+      "date": "2025-07-16",
+      "total": 913,
+      "answered": 743,
+      "answered30s": 71,
+      "answered2min": 102,
+      "abandoned": 10,
+      "transferredCbsi": 92,
+      "slaHit5min": 246
+    },
+    {
+      "date": "2025-07-17",
+      "total": 992,
+      "answered": 796,
+      "answered30s": 92,
+      "answered2min": 158,
+      "abandoned": 12,
+      "transferredCbsi": 55,
+      "slaHit5min": 273
+    },
+    {
+      "date": "2025-07-18",
+      "total": 743,
+      "answered": 607,
+      "answered30s": 79,
+      "answered2min": 116,
+      "abandoned": 16,
+      "transferredCbsi": 47,
+      "slaHit5min": 231
+    },
+    {
+      "date": "2025-07-19",
+      "total": 388,
+      "answered": 308,
+      "answered30s": 31,
+      "answered2min": 41,
+      "abandoned": 5,
+      "transferredCbsi": 29,
+      "slaHit5min": 81
+    },
+    {
+      "date": "2025-07-20",
+      "total": 282,
+      "answered": 236,
+      "answered30s": 21,
+      "answered2min": 30,
+      "abandoned": 2,
+      "transferredCbsi": 20,
+      "slaHit5min": 56
+    },
+    {
+      "date": "2025-07-21",
+      "total": 826,
+      "answered": 734,
+      "answered30s": 64,
+      "answered2min": 104,
+      "abandoned": 11,
+      "transferredCbsi": 43,
+      "slaHit5min": 200
+    },
+    {
+      "date": "2025-07-22",
+      "total": 866,
+      "answered": 707,
+      "answered30s": 141,
+      "answered2min": 184,
+      "abandoned": 10,
+      "transferredCbsi": 33,
+      "slaHit5min": 269
+    },
+    {
+      "date": "2025-07-23",
+      "total": 699,
+      "answered": 614,
+      "answered30s": 51,
+      "answered2min": 89,
+      "abandoned": 8,
+      "transferredCbsi": 24,
+      "slaHit5min": 150
+    },
+    {
+      "date": "2025-07-24",
+      "total": 907,
+      "answered": 747,
+      "answered30s": 52,
+      "answered2min": 89,
+      "abandoned": 11,
+      "transferredCbsi": 76,
+      "slaHit5min": 205
+    },
+    {
+      "date": "2025-07-25",
+      "total": 882,
+      "answered": 645,
+      "answered30s": 100,
+      "answered2min": 130,
+      "abandoned": 19,
+      "transferredCbsi": 104,
+      "slaHit5min": 300
+    },
+    {
+      "date": "2025-07-26",
+      "total": 470,
+      "answered": 360,
+      "answered30s": 37,
+      "answered2min": 49,
+      "abandoned": 4,
+      "transferredCbsi": 34,
+      "slaHit5min": 103
+    },
+    {
+      "date": "2025-07-27",
+      "total": 248,
+      "answered": 225,
+      "answered30s": 12,
+      "answered2min": 18,
+      "abandoned": 4,
+      "transferredCbsi": 7,
+      "slaHit5min": 36
+    },
+    {
+      "date": "2025-07-28",
+      "total": 845,
+      "answered": 698,
+      "answered30s": 57,
+      "answered2min": 123,
+      "abandoned": 6,
+      "transferredCbsi": 74,
+      "slaHit5min": 245
+    },
+    {
+      "date": "2025-07-29",
+      "total": 1149,
+      "answered": 955,
+      "answered30s": 76,
+      "answered2min": 134,
+      "abandoned": 7,
+      "transferredCbsi": 116,
+      "slaHit5min": 331
+    },
+    {
+      "date": "2025-07-30",
+      "total": 880,
+      "answered": 750,
+      "answered30s": 62,
+      "answered2min": 95,
+      "abandoned": 8,
+      "transferredCbsi": 54,
+      "slaHit5min": 197
+    },
+    {
+      "date": "2025-07-31",
+      "total": 957,
+      "answered": 767,
+      "answered30s": 58,
+      "answered2min": 97,
+      "abandoned": 11,
+      "transferredCbsi": 92,
+      "slaHit5min": 226
+    },
+    {
+      "date": "2025-08-01",
+      "total": 730,
+      "answered": 631,
+      "answered30s": 43,
+      "answered2min": 79,
+      "abandoned": 7,
+      "transferredCbsi": 37,
+      "slaHit5min": 155
+    },
+    {
+      "date": "2025-08-02",
+      "total": 274,
+      "answered": 234,
+      "answered30s": 22,
+      "answered2min": 33,
+      "abandoned": 6,
+      "transferredCbsi": 16,
+      "slaHit5min": 63
+    },
+    {
+      "date": "2025-08-03",
+      "total": 214,
+      "answered": 184,
+      "answered30s": 13,
+      "answered2min": 23,
+      "abandoned": 1,
+      "transferredCbsi": 4,
+      "slaHit5min": 32
+    },
+    {
+      "date": "2025-08-04",
+      "total": 737,
+      "answered": 643,
+      "answered30s": 80,
+      "answered2min": 115,
+      "abandoned": 5,
+      "transferredCbsi": 37,
+      "slaHit5min": 164
+    },
+    {
+      "date": "2025-08-05",
+      "total": 889,
+      "answered": 793,
+      "answered30s": 87,
+      "answered2min": 167,
+      "abandoned": 22,
+      "transferredCbsi": 21,
+      "slaHit5min": 282
+    },
+    {
+      "date": "2025-08-06",
+      "total": 917,
+      "answered": 765,
+      "answered30s": 108,
+      "answered2min": 162,
+      "abandoned": 14,
+      "transferredCbsi": 30,
+      "slaHit5min": 279
+    },
+    {
+      "date": "2025-08-07",
+      "total": 843,
+      "answered": 745,
+      "answered30s": 49,
+      "answered2min": 73,
+      "abandoned": 8,
+      "transferredCbsi": 36,
+      "slaHit5min": 154
+    },
+    {
+      "date": "2025-08-08",
+      "total": 904,
+      "answered": 782,
+      "answered30s": 83,
+      "answered2min": 175,
+      "abandoned": 8,
+      "transferredCbsi": 36,
+      "slaHit5min": 296
+    },
+    {
+      "date": "2025-08-09",
+      "total": 339,
+      "answered": 273,
+      "answered30s": 27,
+      "answered2min": 30,
+      "abandoned": 10,
+      "transferredCbsi": 28,
+      "slaHit5min": 77
+    },
+    {
+      "date": "2025-08-10",
+      "total": 226,
+      "answered": 213,
+      "answered30s": 9,
+      "answered2min": 14,
+      "abandoned": 1,
+      "transferredCbsi": 7,
+      "slaHit5min": 32
+    },
+    {
+      "date": "2025-08-11",
+      "total": 819,
+      "answered": 703,
+      "answered30s": 85,
+      "answered2min": 132,
+      "abandoned": 12,
+      "transferredCbsi": 36,
+      "slaHit5min": 195
+    },
+    {
+      "date": "2025-08-12",
+      "total": 818,
+      "answered": 740,
+      "answered30s": 71,
+      "answered2min": 110,
+      "abandoned": 11,
+      "transferredCbsi": 18,
+      "slaHit5min": 158
+    },
+    {
+      "date": "2025-08-13",
+      "total": 715,
+      "answered": 626,
+      "answered30s": 62,
+      "answered2min": 98,
+      "abandoned": 7,
+      "transferredCbsi": 26,
+      "slaHit5min": 161
+    },
+    {
+      "date": "2025-08-14",
+      "total": 985,
+      "answered": 817,
+      "answered30s": 101,
+      "answered2min": 176,
+      "abandoned": 24,
+      "transferredCbsi": 61,
+      "slaHit5min": 355
+    },
+    {
+      "date": "2025-08-15",
+      "total": 839,
+      "answered": 697,
+      "answered30s": 112,
+      "answered2min": 186,
+      "abandoned": 17,
+      "transferredCbsi": 32,
+      "slaHit5min": 309
+    },
+    {
+      "date": "2025-08-16",
+      "total": 259,
+      "answered": 237,
+      "answered30s": 14,
+      "answered2min": 25,
+      "abandoned": 2,
+      "transferredCbsi": 4,
+      "slaHit5min": 44
+    },
+    {
+      "date": "2025-08-17",
+      "total": 170,
+      "answered": 156,
+      "answered30s": 10,
+      "answered2min": 20,
+      "abandoned": 0,
+      "transferredCbsi": 2,
+      "slaHit5min": 29
+    },
+    {
+      "date": "2025-08-18",
+      "total": 852,
+      "answered": 741,
+      "answered30s": 94,
+      "answered2min": 147,
+      "abandoned": 20,
+      "transferredCbsi": 23,
+      "slaHit5min": 249
+    },
+    {
+      "date": "2025-08-19",
+      "total": 687,
+      "answered": 612,
+      "answered30s": 58,
+      "answered2min": 95,
+      "abandoned": 14,
+      "transferredCbsi": 25,
+      "slaHit5min": 172
+    },
+    {
+      "date": "2025-08-20",
+      "total": 746,
+      "answered": 631,
+      "answered30s": 49,
+      "answered2min": 63,
+      "abandoned": 4,
+      "transferredCbsi": 31,
+      "slaHit5min": 107
+    },
+    {
+      "date": "2025-08-21",
+      "total": 870,
+      "answered": 728,
+      "answered30s": 49,
+      "answered2min": 99,
+      "abandoned": 7,
+      "transferredCbsi": 41,
+      "slaHit5min": 191
+    },
+    {
+      "date": "2025-08-22",
+      "total": 801,
+      "answered": 712,
+      "answered30s": 88,
+      "answered2min": 140,
+      "abandoned": 16,
+      "transferredCbsi": 13,
+      "slaHit5min": 224
+    },
+    {
+      "date": "2025-08-23",
+      "total": 353,
+      "answered": 290,
+      "answered30s": 16,
+      "answered2min": 21,
+      "abandoned": 5,
+      "transferredCbsi": 17,
+      "slaHit5min": 49
+    },
+    {
+      "date": "2025-08-24",
+      "total": 156,
+      "answered": 141,
+      "answered30s": 11,
+      "answered2min": 13,
+      "abandoned": 0,
+      "transferredCbsi": 4,
+      "slaHit5min": 17
+    },
+    {
+      "date": "2025-08-25",
+      "total": 728,
+      "answered": 608,
+      "answered30s": 77,
+      "answered2min": 119,
+      "abandoned": 23,
+      "transferredCbsi": 46,
+      "slaHit5min": 235
+    },
+    {
+      "date": "2025-08-26",
+      "total": 699,
+      "answered": 612,
+      "answered30s": 37,
+      "answered2min": 75,
+      "abandoned": 10,
+      "transferredCbsi": 38,
+      "slaHit5min": 143
+    },
+    {
+      "date": "2025-08-27",
+      "total": 782,
+      "answered": 666,
+      "answered30s": 72,
+      "answered2min": 95,
+      "abandoned": 14,
+      "transferredCbsi": 54,
+      "slaHit5min": 174
+    },
+    {
+      "date": "2025-08-28",
+      "total": 1019,
+      "answered": 856,
+      "answered30s": 124,
+      "answered2min": 190,
+      "abandoned": 35,
+      "transferredCbsi": 10,
+      "slaHit5min": 305
+    },
+    {
+      "date": "2025-08-29",
+      "total": 676,
+      "answered": 609,
+      "answered30s": 58,
+      "answered2min": 83,
+      "abandoned": 7,
+      "transferredCbsi": 28,
+      "slaHit5min": 141
+    },
+    {
+      "date": "2025-08-30",
+      "total": 300,
+      "answered": 257,
+      "answered30s": 34,
+      "answered2min": 38,
+      "abandoned": 2,
+      "transferredCbsi": 6,
+      "slaHit5min": 48
+    },
+    {
+      "date": "2025-08-31",
+      "total": 216,
+      "answered": 180,
+      "answered30s": 9,
+      "answered2min": 12,
+      "abandoned": 3,
+      "transferredCbsi": 14,
+      "slaHit5min": 29
+    },
+    {
+      "date": "2025-09-01",
+      "total": 275,
+      "answered": 264,
+      "answered30s": 6,
+      "answered2min": 8,
+      "abandoned": 0,
+      "transferredCbsi": 0,
+      "slaHit5min": 9
+    },
+    {
+      "date": "2025-09-02",
+      "total": 1168,
+      "answered": 1016,
+      "answered30s": 123,
+      "answered2min": 179,
+      "abandoned": 24,
+      "transferredCbsi": 28,
+      "slaHit5min": 330
+    },
+    {
+      "date": "2025-09-03",
+      "total": 820,
+      "answered": 739,
+      "answered30s": 65,
+      "answered2min": 100,
+      "abandoned": 17,
+      "transferredCbsi": 27,
+      "slaHit5min": 146
+    },
+    {
+      "date": "2025-09-04",
+      "total": 824,
+      "answered": 689,
+      "answered30s": 50,
+      "answered2min": 86,
+      "abandoned": 23,
+      "transferredCbsi": 41,
+      "slaHit5min": 203
+    },
+    {
+      "date": "2025-09-05",
+      "total": 795,
+      "answered": 678,
+      "answered30s": 57,
+      "answered2min": 137,
+      "abandoned": 12,
+      "transferredCbsi": 51,
+      "slaHit5min": 279
+    },
+    {
+      "date": "2025-09-06",
+      "total": 252,
+      "answered": 208,
+      "answered30s": 12,
+      "answered2min": 29,
+      "abandoned": 3,
+      "transferredCbsi": 15,
+      "slaHit5min": 56
+    },
+    {
+      "date": "2025-09-07",
+      "total": 205,
+      "answered": 168,
+      "answered30s": 14,
+      "answered2min": 17,
+      "abandoned": 0,
+      "transferredCbsi": 6,
+      "slaHit5min": 24
+    },
+    {
+      "date": "2025-09-08",
+      "total": 625,
+      "answered": 549,
+      "answered30s": 63,
+      "answered2min": 92,
+      "abandoned": 7,
+      "transferredCbsi": 9,
+      "slaHit5min": 129
+    },
+    {
+      "date": "2025-09-09",
+      "total": 666,
+      "answered": 579,
+      "answered30s": 35,
+      "answered2min": 57,
+      "abandoned": 7,
+      "transferredCbsi": 33,
+      "slaHit5min": 109
+    },
+    {
+      "date": "2025-09-10",
+      "total": 918,
+      "answered": 716,
+      "answered30s": 44,
+      "answered2min": 104,
+      "abandoned": 22,
+      "transferredCbsi": 124,
+      "slaHit5min": 291
+    },
+    {
+      "date": "2025-09-11",
+      "total": 1167,
+      "answered": 774,
+      "answered30s": 78,
+      "answered2min": 107,
+      "abandoned": 71,
+      "transferredCbsi": 298,
+      "slaHit5min": 511
+    },
+    {
+      "date": "2025-09-12",
+      "total": 829,
+      "answered": 727,
+      "answered30s": 123,
+      "answered2min": 185,
+      "abandoned": 20,
+      "transferredCbsi": 30,
+      "slaHit5min": 263
+    },
+    {
+      "date": "2025-09-13",
+      "total": 346,
+      "answered": 289,
+      "answered30s": 18,
+      "answered2min": 34,
+      "abandoned": 9,
+      "transferredCbsi": 30,
+      "slaHit5min": 91
+    },
+    {
+      "date": "2025-09-14",
+      "total": 151,
+      "answered": 141,
+      "answered30s": 9,
+      "answered2min": 15,
+      "abandoned": 2,
+      "transferredCbsi": 6,
+      "slaHit5min": 23
+    },
+    {
+      "date": "2025-09-15",
+      "total": 892,
+      "answered": 709,
+      "answered30s": 96,
+      "answered2min": 173,
+      "abandoned": 49,
+      "transferredCbsi": 84,
+      "slaHit5min": 344
+    },
+    {
+      "date": "2025-09-16",
+      "total": 866,
+      "answered": 736,
+      "answered30s": 107,
+      "answered2min": 137,
+      "abandoned": 42,
+      "transferredCbsi": 2,
+      "slaHit5min": 223
+    },
+    {
+      "date": "2025-09-17",
+      "total": 869,
+      "answered": 746,
+      "answered30s": 98,
+      "answered2min": 146,
+      "abandoned": 34,
+      "transferredCbsi": 1,
+      "slaHit5min": 227
+    },
+    {
+      "date": "2025-09-18",
+      "total": 737,
+      "answered": 659,
+      "answered30s": 103,
+      "answered2min": 125,
+      "abandoned": 18,
+      "transferredCbsi": 1,
+      "slaHit5min": 160
+    },
+    {
+      "date": "2025-09-19",
+      "total": 831,
+      "answered": 715,
+      "answered30s": 187,
+      "answered2min": 224,
+      "abandoned": 39,
+      "transferredCbsi": 4,
+      "slaHit5min": 312
+    },
+    {
+      "date": "2025-09-20",
+      "total": 223,
+      "answered": 201,
+      "answered30s": 5,
+      "answered2min": 26,
+      "abandoned": 7,
+      "transferredCbsi": 1,
+      "slaHit5min": 36
+    },
+    {
+      "date": "2025-09-21",
+      "total": 148,
+      "answered": 135,
+      "answered30s": 3,
+      "answered2min": 3,
+      "abandoned": 2,
+      "transferredCbsi": 0,
+      "slaHit5min": 5
+    },
+    {
+      "date": "2025-09-22",
+      "total": 680,
+      "answered": 567,
+      "answered30s": 112,
+      "answered2min": 164,
+      "abandoned": 9,
+      "transferredCbsi": 13,
+      "slaHit5min": 199
+    },
+    {
+      "date": "2025-09-23",
+      "total": 595,
+      "answered": 506,
+      "answered30s": 99,
+      "answered2min": 134,
+      "abandoned": 22,
+      "transferredCbsi": 1,
+      "slaHit5min": 176
+    },
+    {
+      "date": "2025-09-24",
+      "total": 654,
+      "answered": 574,
+      "answered30s": 96,
+      "answered2min": 123,
+      "abandoned": 19,
+      "transferredCbsi": 2,
+      "slaHit5min": 161
+    },
+    {
+      "date": "2025-09-25",
+      "total": 674,
+      "answered": 549,
+      "answered30s": 130,
+      "answered2min": 173,
+      "abandoned": 10,
+      "transferredCbsi": 2,
+      "slaHit5min": 233
+    },
+    {
+      "date": "2025-09-26",
+      "total": 632,
+      "answered": 536,
+      "answered30s": 154,
+      "answered2min": 191,
+      "abandoned": 20,
+      "transferredCbsi": 2,
+      "slaHit5min": 241
+    },
+    {
+      "date": "2025-09-27",
+      "total": 176,
+      "answered": 146,
+      "answered30s": 25,
+      "answered2min": 36,
+      "abandoned": 3,
+      "transferredCbsi": 0,
+      "slaHit5min": 40
+    },
+    {
+      "date": "2025-09-28",
+      "total": 97,
+      "answered": 89,
+      "answered30s": 5,
+      "answered2min": 9,
+      "abandoned": 0,
+      "transferredCbsi": 2,
+      "slaHit5min": 16
+    },
+    {
+      "date": "2025-09-29",
+      "total": 643,
+      "answered": 548,
+      "answered30s": 112,
+      "answered2min": 135,
+      "abandoned": 13,
+      "transferredCbsi": 8,
+      "slaHit5min": 195
+    },
+    {
+      "date": "2025-09-30",
+      "total": 598,
+      "answered": 537,
+      "answered30s": 84,
+      "answered2min": 113,
+      "abandoned": 6,
+      "transferredCbsi": 2,
+      "slaHit5min": 131
+    },
+    {
+      "date": "2025-10-01",
+      "total": 530,
+      "answered": 471,
+      "answered30s": 37,
+      "answered2min": 71,
+      "abandoned": 11,
+      "transferredCbsi": 2,
+      "slaHit5min": 94
+    },
+    {
+      "date": "2025-10-02",
+      "total": 592,
+      "answered": 514,
+      "answered30s": 88,
+      "answered2min": 109,
+      "abandoned": 20,
+      "transferredCbsi": 10,
+      "slaHit5min": 146
+    },
+    {
+      "date": "2025-10-03",
+      "total": 623,
+      "answered": 541,
+      "answered30s": 109,
+      "answered2min": 137,
+      "abandoned": 19,
+      "transferredCbsi": 3,
+      "slaHit5min": 185
+    },
+    {
+      "date": "2025-10-04",
+      "total": 203,
+      "answered": 162,
+      "answered30s": 16,
+      "answered2min": 26,
+      "abandoned": 9,
+      "transferredCbsi": 2,
+      "slaHit5min": 38
+    },
+    {
+      "date": "2025-10-05",
+      "total": 75,
+      "answered": 68,
+      "answered30s": 9,
+      "answered2min": 12,
+      "abandoned": 5,
+      "transferredCbsi": 0,
+      "slaHit5min": 15
+    },
+    {
+      "date": "2025-10-06",
+      "total": 646,
+      "answered": 510,
+      "answered30s": 45,
+      "answered2min": 64,
+      "abandoned": 44,
+      "transferredCbsi": 5,
+      "slaHit5min": 121
+    },
+    {
+      "date": "2025-10-07",
+      "total": 541,
+      "answered": 502,
+      "answered30s": 47,
+      "answered2min": 62,
+      "abandoned": 15,
+      "transferredCbsi": 1,
+      "slaHit5min": 89
+    },
+    {
+      "date": "2025-10-08",
+      "total": 745,
+      "answered": 682,
+      "answered30s": 40,
+      "answered2min": 62,
+      "abandoned": 8,
+      "transferredCbsi": 10,
+      "slaHit5min": 92
+    },
+    {
+      "date": "2025-10-09",
+      "total": 781,
+      "answered": 681,
+      "answered30s": 128,
+      "answered2min": 188,
+      "abandoned": 30,
+      "transferredCbsi": 5,
+      "slaHit5min": 269
+    },
+    {
+      "date": "2025-10-10",
+      "total": 534,
+      "answered": 454,
+      "answered30s": 130,
+      "answered2min": 139,
+      "abandoned": 26,
+      "transferredCbsi": 1,
+      "slaHit5min": 189
+    },
+    {
+      "date": "2025-10-11",
+      "total": 157,
+      "answered": 138,
+      "answered30s": 17,
+      "answered2min": 24,
+      "abandoned": 4,
+      "transferredCbsi": 1,
+      "slaHit5min": 30
+    },
+    {
+      "date": "2025-10-12",
+      "total": 177,
+      "answered": 146,
+      "answered30s": 14,
+      "answered2min": 17,
+      "abandoned": 13,
+      "transferredCbsi": 0,
+      "slaHit5min": 33
+    },
+    {
+      "date": "2025-10-13",
+      "total": 605,
+      "answered": 541,
+      "answered30s": 70,
+      "answered2min": 102,
+      "abandoned": 11,
+      "transferredCbsi": 6,
+      "slaHit5min": 133
+    },
+    {
+      "date": "2025-10-14",
+      "total": 628,
+      "answered": 555,
+      "answered30s": 75,
+      "answered2min": 99,
+      "abandoned": 9,
+      "transferredCbsi": 8,
+      "slaHit5min": 152
+    },
+    {
+      "date": "2025-10-15",
+      "total": 901,
+      "answered": 758,
+      "answered30s": 124,
+      "answered2min": 196,
+      "abandoned": 24,
+      "transferredCbsi": 7,
+      "slaHit5min": 265
+    },
+    {
+      "date": "2025-10-16",
+      "total": 1073,
+      "answered": 878,
+      "answered30s": 252,
+      "answered2min": 289,
+      "abandoned": 45,
+      "transferredCbsi": 3,
+      "slaHit5min": 423
+    },
+    {
+      "date": "2025-10-17",
+      "total": 704,
+      "answered": 571,
+      "answered30s": 124,
+      "answered2min": 172,
+      "abandoned": 35,
+      "transferredCbsi": 17,
+      "slaHit5min": 263
+    },
+    {
+      "date": "2025-10-18",
+      "total": 243,
+      "answered": 202,
+      "answered30s": 20,
+      "answered2min": 31,
+      "abandoned": 5,
+      "transferredCbsi": 1,
+      "slaHit5min": 44
+    },
+    {
+      "date": "2025-10-19",
+      "total": 111,
+      "answered": 94,
+      "answered30s": 0,
+      "answered2min": 0,
+      "abandoned": 11,
+      "transferredCbsi": 0,
+      "slaHit5min": 11
+    },
+    {
+      "date": "2025-10-20",
+      "total": 684,
+      "answered": 592,
+      "answered30s": 96,
+      "answered2min": 124,
+      "abandoned": 28,
+      "transferredCbsi": 15,
+      "slaHit5min": 189
+    },
+    {
+      "date": "2025-10-21",
+      "total": 901,
+      "answered": 760,
+      "answered30s": 139,
+      "answered2min": 171,
+      "abandoned": 45,
+      "transferredCbsi": 20,
+      "slaHit5min": 298
+    },
+    {
+      "date": "2025-10-22",
+      "total": 759,
+      "answered": 666,
+      "answered30s": 110,
+      "answered2min": 153,
+      "abandoned": 32,
+      "transferredCbsi": 2,
+      "slaHit5min": 228
+    },
+    {
+      "date": "2025-10-23",
+      "total": 859,
+      "answered": 750,
+      "answered30s": 136,
+      "answered2min": 180,
+      "abandoned": 31,
+      "transferredCbsi": 3,
+      "slaHit5min": 252
+    },
+    {
+      "date": "2025-10-24",
+      "total": 700,
+      "answered": 579,
+      "answered30s": 88,
+      "answered2min": 134,
+      "abandoned": 48,
+      "transferredCbsi": 7,
+      "slaHit5min": 221
+    },
+    {
+      "date": "2025-10-25",
+      "total": 187,
+      "answered": 163,
+      "answered30s": 17,
+      "answered2min": 22,
+      "abandoned": 6,
+      "transferredCbsi": 1,
+      "slaHit5min": 35
+    },
+    {
+      "date": "2025-10-26",
+      "total": 133,
+      "answered": 109,
+      "answered30s": 14,
+      "answered2min": 15,
+      "abandoned": 9,
+      "transferredCbsi": 0,
+      "slaHit5min": 25
+    },
+    {
+      "date": "2025-10-27",
+      "total": 722,
+      "answered": 628,
+      "answered30s": 82,
+      "answered2min": 112,
+      "abandoned": 25,
+      "transferredCbsi": 32,
+      "slaHit5min": 199
+    },
+    {
+      "date": "2025-10-28",
+      "total": 731,
+      "answered": 601,
+      "answered30s": 141,
+      "answered2min": 175,
+      "abandoned": 37,
+      "transferredCbsi": 9,
+      "slaHit5min": 271
+    },
+    {
+      "date": "2025-10-29",
+      "total": 847,
+      "answered": 725,
+      "answered30s": 109,
+      "answered2min": 144,
+      "abandoned": 29,
+      "transferredCbsi": 10,
+      "slaHit5min": 205
+    },
+    {
+      "date": "2025-10-30",
+      "total": 696,
+      "answered": 608,
+      "answered30s": 117,
+      "answered2min": 155,
+      "abandoned": 19,
+      "transferredCbsi": 3,
+      "slaHit5min": 202
+    },
+    {
+      "date": "2025-10-31",
+      "total": 500,
+      "answered": 461,
+      "answered30s": 83,
+      "answered2min": 103,
+      "abandoned": 0,
+      "transferredCbsi": 1,
+      "slaHit5min": 144
+    },
+    {
+      "date": "2025-11-01",
+      "total": 172,
+      "answered": 159,
+      "answered30s": 22,
+      "answered2min": 29,
+      "abandoned": 1,
+      "transferredCbsi": 1,
+      "slaHit5min": 31
+    },
+    {
+      "date": "2025-11-02",
+      "total": 97,
+      "answered": 86,
+      "answered30s": 2,
+      "answered2min": 2,
+      "abandoned": 2,
+      "transferredCbsi": 0,
+      "slaHit5min": 5
+    },
+    {
+      "date": "2025-11-03",
+      "total": 596,
+      "answered": 526,
+      "answered30s": 122,
+      "answered2min": 163,
+      "abandoned": 9,
+      "transferredCbsi": 3,
+      "slaHit5min": 204
+    }
+  ]
+}
