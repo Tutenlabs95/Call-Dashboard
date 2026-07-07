@@ -1,0 +1,44 @@
+name: Update call center dashboard data
+
+# Option A from DEV-HANDOFF-network-issue.md: identical to update-dashboard.yml,
+# except this runs on a self-hosted runner (a machine inside your network/VPN that
+# can actually reach metabase.ops.tutenlabs.com) instead of GitHub's public runners.
+#
+# To use: register a self-hosted runner for this repo (Settings -> Actions -> Runners
+# -> New self-hosted runner) on a machine that can reach Metabase, then replace the
+# contents of .github/workflows/update-dashboard.yml with this file.
+
+on:
+  schedule:
+    - cron: "10 6 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: self-hosted   # <-- the only change from the original workflow
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - run: pip install requests
+
+      - name: Pull yesterday's calls from Metabase
+        env:
+          METABASE_URL: ${{ secrets.METABASE_URL }}
+          METABASE_USER: ${{ secrets.METABASE_USER }}
+          METABASE_PASSWORD: ${{ secrets.METABASE_PASSWORD }}
+        run: python update_data.py
+
+      - name: Commit updated data.json
+        run: |
+          git config user.name "dashboard-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data.json
+          git diff --cached --quiet || git commit -m "Daily data update: $(date -u +%Y-%m-%d)"
+          git push
