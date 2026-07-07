@@ -1,0 +1,46 @@
+name: Update call center dashboard data
+
+# Runs once a day, after the day is fully over, and commits the refreshed data.json
+# so the GitHub Pages-hosted dashboard rolls forward automatically.
+#
+# IMPORTANT: this file must live at .github/workflows/update-dashboard.yml in the repo
+# (create the .github/workflows/ folders after you upload — GitHub won't let you
+# create a folder literally named ".github" through the web upload UI in one step,
+# so either use `git` locally or create the folders one at a time in the GitHub UI).
+
+on:
+  schedule:
+    # 06:10 UTC daily — comfortably after midnight in US time zones so "yesterday"
+    # is fully closed out. Adjust to your call center's timezone/close-of-day.
+    - cron: "10 6 * * *"
+  workflow_dispatch: {}   # lets you trigger a run manually from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - run: pip install requests
+
+      - name: Pull yesterday's calls from Metabase
+        env:
+          METABASE_URL: ${{ secrets.METABASE_URL }}
+          METABASE_USER: ${{ secrets.METABASE_USER }}
+          METABASE_PASSWORD: ${{ secrets.METABASE_PASSWORD }}
+        run: python update_data.py
+
+      - name: Commit updated data.json
+        run: |
+          git config user.name "dashboard-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data.json
+          git diff --cached --quiet || git commit -m "Daily data update: $(date -u +%Y-%m-%d)"
+          git push
